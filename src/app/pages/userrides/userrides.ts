@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-userrides',
   imports: [],
   templateUrl: './userrides.html',
-  styleUrl: './userrides.css',
+  styleUrl: './userrides.scss',
+  standalone:true
 })
 export class Userrides {
 

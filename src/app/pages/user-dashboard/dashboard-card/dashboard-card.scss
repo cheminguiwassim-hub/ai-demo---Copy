@@ -1,0 +1,47 @@
+.dashboard-title {
+  color: #2d3436;
+  font-size: 28px;
+}
+
+.dashboard-card {
+  border-radius: 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  background: #ffffff;
+  min-height: 300px;
+  border: none;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+  font-size: 48px;
+  color: #007bff;
+}
+
+.card-title {
+  font-weight: 600;
+  color: #2d3436;
+}
+.card-body {
+  padding: 30px 10px;
+}
+.card-gif {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.gif-box {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+  
+
+ 

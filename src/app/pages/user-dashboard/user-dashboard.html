@@ -1,1 +1,43 @@
-<p>user-dashboard works!</p>
+<div class="container py-4">
+
+  <h2 class="text-center mb-4 fw-bold dashboard-title dashboard-title">
+    Tableau de bord utilisateur
+  </h2>
+
+  <div class="row g-4">
+
+  <div class="col-12 col-md-6 col-lg-3">
+    <app-dashboard-card
+      title="Modifier Profil"
+      description="Gérer vos informations personnelles"
+      routerLink="/pages/userprofile"
+      animationPath="../assets/animations/Profile.json">
+    </app-dashboard-card>
+  </div>
+<div class="col-12 col-md-6 col-lg-3">
+    <app-dashboard-card
+      title="Mes Covoiturages"
+      description="Consultez et gérez vos trajets publiés."
+      routerLink="/pages/userrides"
+      animationPath="assets/animations/car.json">
+    </app-dashboard-card>
+</div>
+<div class="col-12 col-md-6 col-lg-3">
+    <app-dashboard-card
+      title="Publier un Trajet"
+      description="Ajoutez un nouveau covoiturage."
+      routerLink="/pages/usernewride"
+      animationPath="assets/animations/Globe.json">
+    </app-dashboard-card>
+    </div>
+<div class="col-12 col-md-6 col-lg-3">
+    <app-dashboard-card
+      title="Statistiques"
+      description="Suivez vos performances."
+      routerLink="/pages/userstats"
+      animationPath="assets/animations/Bar.json">
+    </app-dashboard-card>
+</div>
+  </div>
+
+</div>

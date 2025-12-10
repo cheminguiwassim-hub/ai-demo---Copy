@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-userstats',
   imports: [],
   templateUrl: './userstats.html',
-  styleUrl: './userstats.css',
+  styleUrl: './userstats.scss',
+  standalone:true,
 })
 export class Userstats {
 

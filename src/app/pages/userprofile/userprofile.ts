@@ -4,8 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-userprofile',
   imports: [],
   templateUrl: './userprofile.html',
-  styleUrl: './userprofile.css',
+  styleUrl: './userprofile.scss',
+  standalone:true,
 })
 export class Userprofile {
+      getUserInitials(): string {
+    return 'JD';}
 
 }

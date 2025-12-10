@@ -1,1 +1,177 @@
-<p>usernewride works!</p>
+<div class="publish-container">
+  <div class="container py-5">
+    
+    <div class="form-wrapper">
+      
+      <!-- Header -->
+      <div class="form-header">
+        <h1 class="form-title">🚗 Publier un trajet</h1>
+        <p class="form-subtitle">Partagez votre route et réduisez vos frais</p>
+        
+        <!-- Progress Steps -->
+        <div class="steps-indicator">
+          <div class="step" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+            <div class="step-icon">📍</div>
+            <span class="step-label">Itinéraire</span>
+          </div>
+          <div class="step-line" [class.filled]="currentStep > 1"></div>
+          <div class="step" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+            <div class="step-icon">📅</div>
+            <span class="step-label">Détails</span>
+          </div>
+          <div class="step-line" [class.filled]="currentStep > 2"></div>
+          <div class="step" [class.active]="currentStep >= 3">
+            <div class="step-icon">✅</div>
+            <span class="step-label">Confirmation</span>
+          </div>
+        </div>
+      </div>
+
+      <form [formGroup]="rideForm" (ngSubmit)="onSubmit()" class="ride-form">
+        
+        <!-- Step 1: Route -->
+        <div class="form-step" *ngIf="currentStep === 1">
+          <h3 class="step-title">D'où partez-vous ?</h3>
+          
+          <div class="input-group-animated">
+            <span class="input-icon">📍</span>
+            <input type="text" formControlName="departure" placeholder="Ville de départ" class="modern-input">
+            <label>Départ</label>
+          </div>
+
+          <div class="connector-line">
+            <span class="arrow">⬇</span>
+          </div>
+
+          <div class="input-group-animated">
+            <span class="input-icon">🏁</span>
+            <input type="text" formControlName="arrival" placeholder="Ville d'arrivée" class="modern-input">
+            <label>Arrivée</label>
+          </div>
+
+          <div class="step-actions">
+            <!-- Placeholder for back button spacing -->
+             <div></div> 
+            <button type="button" class="btn-next" (click)="nextStep()">Suivant ➜</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Details -->
+        <div class="form-step" *ngIf="currentStep === 2">
+          <h3 class="step-title">Quand partez-vous ?</h3>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group-animated">
+                <span class="input-icon">📅</span>
+                <input type="date" formControlName="date" class="modern-input">
+                <label>Date</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group-animated">
+                <span class="input-icon">⏰</span>
+                <input type="time" formControlName="time" class="modern-input">
+                <label>Heure</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+          <h3 class="step-title mt-4">Modalités</h3>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label class="counter-label">Passagers</label>
+              <div class="counter-input">
+                <input type="number" formControlName="passengers" min="1" max="8">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="counter-label">Prix par place (€)</label>
+              <div class="price-input-wrapper">
+                <input type="number" formControlName="price" class="modern-input price-input" min="0">
+                <span class="currency">€</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="options-grid mt-4">
+            <label class="checkbox-card">
+              <input type="checkbox" formControlName="allowSmoking">
+              <span class="card-content">
+                <span class="card-icon">🚬</span>
+                <span class="card-text">Fumeur accepté</span>
+              </span>
+            </label>
+            
+            <label class="checkbox-card">
+              <input type="checkbox" formControlName="allowPets">
+              <span class="card-content">
+                <span class="card-icon">🐾</span>
+                <span class="card-text">Animaux acceptés</span>
+              </span>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" formControlName="instantBooking">
+              <span class="card-content">
+                <span class="card-icon">⚡</span>
+                <span class="card-text">Réservation auto</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-prev" (click)="prevStep()">⬅ Retour</button>
+            <button type="button" class="btn-next" (click)="nextStep()">Suivant ➜</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Confirmation / Preview -->
+        <div class="form-step" *ngIf="currentStep === 3">
+          <h3 class="step-title text-center">Récapitulatif</h3>
+          
+          <div class="preview-card">
+            <div class="preview-route">
+              <div class="city">{{ rideForm.get('departure')?.value || 'Départ' }}</div>
+              <div class="route-visual">
+                <div class="line"></div>
+                <div class="icon">🚗</div>
+              </div>
+              <div class="city">{{ rideForm.get('arrival')?.value || 'Arrivée' }}</div>
+            </div>
+            
+            <div class="preview-details">
+              <div class="detail">
+                <span class="icon">📅</span>
+                <span>{{ rideForm.get('date')?.value }}</span>
+              </div>
+              <div class="detail">
+                <span class="icon">⏰</span>
+                <span>{{ rideForm.get('time')?.value }}</span>
+              </div>
+              <div class="detail">
+                <span class="icon">💶</span>
+                <span class="price-highlight">{{ rideForm.get('price')?.value }}€</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group-animated mt-4">
+            <span class="input-icon">📝</span>
+            <textarea formControlName="description" placeholder="Informations complémentaires pour les passagers..." class="modern-textarea" rows="3"></textarea>
+            <label>Description (optionnel)</label>
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-prev" (click)="prevStep()">⬅ Retour</button>
+            <button type="submit" class="btn-publish">🚀 Publier le trajet</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

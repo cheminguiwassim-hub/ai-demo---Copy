@@ -7,6 +7,7 @@ import { DashboardCard } from './dashboard-card/dashboard-card';
   imports: [RouterLink,DashboardCard],
   templateUrl: './user-dashboard.html',
   styleUrl: './user-dashboard.scss',
+  standalone:true,
 })
 export class UserDashboard {
 

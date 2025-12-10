@@ -1,1 +1,143 @@
-<p>userprofile works!</p>
+<div class="profile-container">
+  <div class="container py-5">
+    
+    <!-- Page Title -->
+    <h1 class="page-title">
+      👤 Mon Profil
+    </h1>
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+      
+      <!-- Profile Header with Avatar -->
+      <div class="profile-header">
+        <div class="avatar-wrapper">
+          <div class="avatar">
+            <span class="avatar-text">{{ getUserInitials() }}</span>
+          </div>
+          <button class="edit-avatar-btn" title="Change Avatar">
+            📷
+          </button>
+        </div>
+        
+        <div class="profile-info">
+          <h2 class="profile-name">Nom Utilisateur</h2>
+          <p class="profile-subtitle">Membre depuis 2024</p>
+          <div class="profile-badges">
+            <span class="badge badge-verified">✓ Vérifié</span>
+            <span class="badge badge-active">🔥 Actif</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Stats -->
+      <div class="profile-stats">
+        <div class="stat-item">
+          <div class="stat-value">12</div>
+          <div class="stat-label">Trajets publiés</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">28</div>
+          <div class="stat-label">Covoiturages</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">4.8</div>
+          <div class="stat-label">⭐ Note</div>
+        </div>
+      </div>
+
+      <!-- Profile Form -->
+      <div class="profile-form">
+        <h3 class="section-title">Informations personnelles</h3>
+        
+        <div class="form-row">
+          <div class="form-field">
+            <label class="field-label">
+              📝 Nom complet
+            </label>
+            <input type="text" class="field-input" placeholder="Votre nom" value="Jean Dupont">
+          </div>
+          
+          <div class="form-field">
+            <label class="field-label">
+              📧 Email
+            </label>
+            <input type="email" class="field-input" placeholder="votre@email.com" value="jean@example.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label class="field-label">
+              📱 Téléphone
+            </label>
+            <input type="tel" class="field-input" placeholder="06 12 34 56 78" value="06 12 34 56 78">
+          </div>
+          
+          <div class="form-field">
+            <label class="field-label">
+              📍 Ville
+            </label>
+            <input type="text" class="field-input" placeholder="Votre ville" value="Paris">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            💬 Bio
+          </label>
+          <textarea class="field-textarea" placeholder="Parlez-nous de vous..." rows="4">Passionné de covoiturage et de rencontres!</textarea>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn-save">
+            💾 Sauvegarder les modifications
+          </button>
+          <button class="btn-cancel">
+            ✖ Annuler
+          </button>
+        </div>
+      </div>
+
+      <!-- Additional Settings -->
+      <div class="profile-settings">
+        <h3 class="section-title">Préférences</h3>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">🔔 Notifications par email</span>
+            <span class="setting-description">Recevoir les alertes de nouveaux trajets</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">🌙 Mode sombre</span>
+            <span class="setting-description">Activer le thème sombre</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">🔒 Profil privé</span>
+            <span class="setting-description">Masquer votre profil des recherches</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

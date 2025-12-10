@@ -1,1 +1,218 @@
-<p>userrides works!</p>
+<div class="rides-container">
+  <div class="container py-5">
+    
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">
+        🚗 Mes Covoiturages
+      </h1>
+      <button class="btn-new-ride" routerLink="/userridesnew">
+        ➕ Nouveau Trajet
+      </button>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="tab-btn active">
+        🌟 Tous
+      </button>
+      <button class="tab-btn">
+        ✅ Actifs
+      </button>
+      <button class="tab-btn">
+        📅 Planifiés
+      </button>
+      <button class="tab-btn">
+        ✔ Terminés
+      </button>
+    </div>
+
+    <!-- Rides List -->
+    <div class="rides-grid">
+      
+      <!-- Ride Card 1 -->
+      <div class="ride-card">
+        <div class="ride-status status-active">🟢 Actif</div>
+        
+        <div class="ride-route">
+          <div class="route-point">
+            <span class="route-icon">📍</span>
+            <div class="route-info">
+              <div class="route-label">Départ</div>
+              <div class="route-city">Paris</div>
+            </div>
+          </div>
+          
+          <div class="route-arrow">→</div>
+          
+          <div class="route-point">
+            <span class="route-icon">🎯</span>
+            <div class="route-info">
+              <div class="route-label">Arrivée</div>
+              <div class="route-city">Lyon</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ride-details">
+          <div class="detail-item">
+            <span class="detail-icon">📅</span>
+            <span class="detail-text">15 Déc 2024</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">⏰</span>
+            <span class="detail-text">09:00</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💺</span>
+            <span class="detail-text">3 places</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💰</span>
+            <span class="detail-text">25€</span>
+          </div>
+        </div>
+
+        <div class="ride-passengers">
+          <div class="passenger-avatars">
+            <div class="passenger-avatar">A</div>
+            <div class="passenger-avatar">B</div>
+            <div class="passenger-count">+1</div>
+          </div>
+          <span class="passengers-text">3 passagers</span>
+        </div>
+
+        <div class="ride-actions">
+          <button class="btn-action btn-view">👁 Voir</button>
+          <button class="btn-action btn-edit">✏ Modifier</button>
+          <button class="btn-action btn-delete">🗑 Annuler</button>
+        </div>
+      </div>
+
+      <!-- Ride Card 2 -->
+      <div class="ride-card">
+        <div class="ride-status status-planned">🔵 Planifié</div>
+        
+        <div class="ride-route">
+          <div class="route-point">
+            <span class="route-icon">📍</span>
+            <div class="route-info">
+              <div class="route-label">Départ</div>
+              <div class="route-city">Marseille</div>
+            </div>
+          </div>
+          
+          <div class="route-arrow">→</div>
+          
+          <div class="route-point">
+            <span class="route-icon">🎯</span>
+            <div class="route-info">
+              <div class="route-label">Arrivée</div>
+              <div class="route-city">Nice</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ride-details">
+          <div class="detail-item">
+            <span class="detail-icon">📅</span>
+            <span class="detail-text">20 Déc 2024</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">⏰</span>
+            <span class="detail-text">14:30</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💺</span>
+            <span class="detail-text">4 places</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💰</span>
+            <span class="detail-text">15€</span>
+          </div>
+        </div>
+
+        <div class="ride-passengers">
+          <div class="passenger-avatars">
+            <div class="passenger-count-empty">0 passagers</div>
+          </div>
+        </div>
+
+        <div class="ride-actions">
+          <button class="btn-action btn-view">👁 Voir</button>
+          <button class="btn-action btn-edit">✏ Modifier</button>
+          <button class="btn-action btn-delete">🗑 Annuler</button>
+        </div>
+      </div>
+
+      <!-- Ride Card 3 -->
+      <div class="ride-card">
+        <div class="ride-status status-completed">⚫ Terminé</div>
+        
+        <div class="ride-route">
+          <div class="route-point">
+            <span class="route-icon">📍</span>
+            <div class="route-info">
+              <div class="route-label">Départ</div>
+              <div class="route-city">Bordeaux</div>
+            </div>
+          </div>
+          
+          <div class="route-arrow">→</div>
+          
+          <div class="route-point">
+            <span class="route-icon">🎯</span>
+            <div class="route-info">
+              <div class="route-label">Arrivée</div>
+              <div class="route-city">Toulouse</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ride-details">
+          <div class="detail-item">
+            <span class="detail-icon">📅</span>
+            <span class="detail-text">05 Déc 2024</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">⏰</span>
+            <span class="detail-text">11:00</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💺</span>
+            <span class="detail-text">2 places</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💰</span>
+            <span class="detail-text">20€</span>
+          </div>
+        </div>
+
+        <div class="ride-passengers">
+          <div class="passenger-avatars">
+            <div class="passenger-avatar">M</div>
+            <div class="passenger-avatar">N</div>
+          </div>
+          <span class="passengers-text">2 passagers</span>
+        </div>
+
+        <div class="ride-actions">
+          <button class="btn-action btn-view">👁 Voir</button>
+          <button class="btn-action btn-review">⭐ Noter</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empty State (conditionally shown) -->
+    <div class="empty-state" style="display: none;">
+      <div class="empty-icon">🚗</div>
+      <h3 class="empty-title">Aucun trajet pour le moment</h3>
+      <p class="empty-text">Commencez à créer vos trajets de covoiturage !</p>
+      <button class="btn-create" routerLink="/userridesnew">
+        ➕ Créer un trajet
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.dashboard-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem; /* taille plus grande */
+  color: #ffffff; /* contraste avec le background */
+  text-align: center; /* texte centré à l'intérieur du bloc */
+  margin: 4rem auto 5rem auto; /* centrer horizontalement avec auto */
+  padding: 1rem 2rem; /* espace autour du texte */
+  border-radius: 50px; /* arrondi style capsule */
+  background: rgba(0, 0, 0, 0.2); /* fond semi-transparent */
+  display: block; /* nécessaire pour margin auto */
+  max-width: fit-content; /* le bloc s’ajuste à la largeur du texte */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* léger relief */
+}
