@@ -1,0 +1,47 @@
+.message-panal-container{
+    padding: 12px;
+    font-family: "Roboto";
+    font-weight: 300;
+    .no-message-container{
+        background-color: #e0e0e0;
+        width: fit-content;
+        padding: 6px;
+        border-radius: 6px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .message-inner-container{
+        display: flex;
+        .message-container{
+            display: flex;
+            .avatar{
+                background-color: #e0e0e0;
+                height: 40px;
+                width: 40px;
+                background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb-jVdOwXzTA5IAmeTgPRMm6xWCrAWRCh2sA&s);
+                background-size: cover;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            .avatar1{
+                background-color: #e0e0e0;
+                height: 40px;
+                width: 40px;
+                background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHUmXqdRAj40ecfLDAn5c6PKkHBo7S9rFCsQ&s);
+                background-size: contain;
+                background-repeat: no-repeat;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            .message{
+                background-color: #ECF4D6;
+                width: fit-content;
+                padding: 6px;
+                border-radius: 6px;
+                margin-bottom: 16px;
+                max-width: 1000px;
+                margin-right: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<section class="app-container">
+<app-header></app-header>
+<app-message-panal [messages]="data"></app-message-panal>
+<app-user-input (sendMessageEmitter)="getMessage($event)"></app-user-input>
+<!-- Map Component -->
+<app-map></app-map>
+</section>

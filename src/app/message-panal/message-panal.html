@@ -1,0 +1,23 @@
+<section class="message-panal-container">
+    @for(message of messages; track message.id){
+        @if (message.sender !=="backend"){
+            @if(message.sender === "user"){
+                <div class="message-inner-container" style="justify-content: flex-end;">
+                    <div class="message-container">
+                        <div class="message">{{message.content}}</div>
+                        <div class="avatar"></div>
+                    </div>
+                </div>
+            } @if(message.sender === "assistant"){
+                <div class="message-inner-container" style="justify-content: flex-start;">
+                    <div class="message-container">
+                        <div class="avatar1"></div>
+                        <div class="message">{{message.content}}</div>
+                    </div>
+                </div>
+            }
+        }
+    } @empty{
+        <div class="no-message-container">NO Messages</div>
+    }
+    </section>

@@ -6,7 +6,7 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<!--
 <style>
   :host {
     --bright-blue: oklch(51.01% 0.274 263.83);
@@ -329,7 +329,7 @@
     </div>
   </div>
 </main>
-
+-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
@@ -338,5 +338,65 @@
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-
+<!--
 <router-outlet />
+-->
+
+
+<!--
+<div style="max-width: 600px; margin: auto; padding: 20px;">
+  <h1>AI Chat</h1>
+
+  <textarea
+    [(ngModel)]="userPrompt"
+    rows="4"
+    placeholder="Ask the AI..."
+    style="width: 100%; padding: 10px;">
+  </textarea>
+
+  <button (click)="send()" style="margin-top: 10px;">Send</button>
+
+  <h3>Response:</h3>
+  <pre>{{ aiResponse }}</pre>
+</div>
+-->
+
+
+
+
+<!--
+<section class="app-container">
+<app-header></app-header>
+<app-message-panal [messages]="data"></app-message-panal>
+<app-user-input (sendMessageEmitter)="getMessage($event)"></app-user-input>
+</section>-->
+
+
+
+<!--
+<section class="app-container">
+<app-header></app-header>
+<app-message-panal [messages]="data"></app-message-panal>
+<app-user-input (sendMessageEmitter)="getMessage($event)"
+                (locationDetected)="handleLocation($event)">
+</app-user-input>
+<app-map></app-map>
+</section>
+-->
+
+
+<!--
+<app-map></app-map>
+<app-message-panal [messages]="data"></app-message-panal>
+<app-user-input (sendMessageEmitter)="getMessage($event)"></app-user-input>
+-->
+
+<!--
+<section class="app-container">
+<app-header></app-header>
+<app-message-panal [messages]="data"></app-message-panal>
+<app-user-input (sendMessageEmitter)="getMessage($event)"></app-user-input>
+--><!-- Map Component --><!--
+<app-map></app-map>
+</section>-->
+<router-outlet></router-outlet>

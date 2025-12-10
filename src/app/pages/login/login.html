@@ -1,0 +1,52 @@
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>🌟 log IN 🌟 </h2>
+        <p class="subtitle">Please enter your credentials 📥</p>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+ 
+         <!--Email--> 
+    <div class="form-group">
+   
+    <input type="text" placeholder="Email" formControlName="email"  required>
+    @if(loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')){
+        <small>Email is required !</small>
+    }
+    @else{
+        @if(loginForm.get('email')?.hasError('email')){
+            <small>Email should be valid !</small>
+        }
+    }
+    </div>
+ 
+
+         <!--password--> 
+    <div class="form-group">
+   
+    <input type="text" placeholder="Password" formControlName="password" required>
+    @if(loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')){
+        <small>Please enter a valid password!</small>
+    }@else{
+        @if(loginForm.get('password')?.hasError('minlength')){
+            <small>At least 6 characters</small>
+        }
+    }
+    </div>
+
+
+
+    <button [class.btn-enable]="loginForm.valid"[class.btn-disable]="loginForm.invalid||isLogging" type="submit" [disabled]="loginForm.invalid||isLogging" >{{isLogging? 'Processing...': 'Register'}}</button>
+
+    <p class="footer-text">
+        Don't have an account?
+       <a routerLink="signup">Signup here</a>
+    </p>
+    <app-error-message [show]="showError"  [message]="errorMsg"></app-error-message>
+</form>
+    </div>
+</div>
+
+
+
+
+
+

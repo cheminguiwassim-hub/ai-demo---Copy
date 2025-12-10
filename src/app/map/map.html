@@ -1,0 +1,32 @@
+<!--<p>map works!</p>
+<div class="map-container">
+  <google-map 
+      height="400px" 
+      width="100%" 
+      [zoom]="zoom" 
+      [center]="center">
+
+    <map-marker 
+        *ngIf="markerOrigin" 
+        [position]="markerOrigin" 
+        label="O">
+    </map-marker>
+
+    <map-marker 
+        *ngIf="markerDestination" 
+        [position]="markerDestination" 
+        label="D">
+    </map-marker>
+
+  </google-map>
+</div>-->
+<div id="map"></div>
+<div class="map-controls">
+  <input type="text" placeholder="Origin..." #originInput>
+  <button (click)="setOrigin(originInput.value)">Set Origin</button>
+
+  <input type="text" placeholder="Destination..." #destInput>
+  <button (click)="setDestination(destInput.value)">Set Destination</button>
+</div>
+
+<div id="map"></div>

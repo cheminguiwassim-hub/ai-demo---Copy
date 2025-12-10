@@ -1,0 +1,31 @@
+<!--<p>home works!</p>
+<div class="home-container">
+  <h1>Welcome to the Ride App</h1>
+
+  <button [routerLink]="['/pages/chat']"class="start-btn">
+    Go to Chat
+  </button>
+</div>
+-->
+
+
+<app-navbar></app-navbar>
+
+<div class="home-container">
+
+  <div class="hero">
+    <h1 class="title">Welcome to RideConnect</h1>
+    <p class="subtitle">Find rides, chat with AI, explore routes & discover drivers easily.</p>
+
+    <button [routerLink]="['/pages/chat']" class="primary-btn">
+      Start Chatting
+    </button>
+
+    <div class="feature-buttons">
+      <button [routerLink]="['/pages/map']" class="feature-btn">Open Map</button>
+      <button [routerLink]="['/pages/rides']" class="feature-btn">View Rides</button>
+      <button [routerLink]="['/pages/profile']" class="feature-btn">Your Profile</button>
+    </div>
+  </div>
+</div>
+

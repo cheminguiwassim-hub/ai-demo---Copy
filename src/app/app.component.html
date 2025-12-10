@@ -1,0 +1,15 @@
+<div style="max-width: 600px; margin: auto; padding: 20px;">
+  <h1>AI Chat</h1>
+
+  <textarea
+    [(ngModel)]="userPrompt"
+    rows="4"
+    placeholder="Ask the AI..."
+    style="width: 100%; padding: 10px;">
+  </textarea>
+
+  <button (click)="send()" style="margin-top: 10px;">Send</button>
+
+  <h3>Response:</h3>
+  <pre>{{ aiResponse }}</pre>
+</div>

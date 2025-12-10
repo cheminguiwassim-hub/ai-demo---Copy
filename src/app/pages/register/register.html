@@ -1,0 +1,73 @@
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>🌟 Create Account 🌟 </h2>
+        <p class="subtitle">Join us and get started 📥</p>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+         <!--Name--> 
+    <div class="form-group">
+         <input type="text" placeholder="Full name" formControlName="name" required>
+         @if (registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')){
+            <small>name is required !</small>
+         }
+    </div>  
+         <!--Email--> 
+    <div class="form-group">
+   
+    <input type="text" placeholder="Email" formControlName="email" [class.input-error]="emailExisting" required>
+    @if(registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')){
+        <small>Email is required !</small>
+    }
+    @else{
+        @if(registerForm.get('email')?.hasError('email')){
+            <small>Email should be valid !</small>
+        }
+    }
+    </div>
+             <!--Mobile--> 
+    <div class="form-group">
+   
+    <input type="text" placeholder="Mobile Number" formControlName="mobile" required>
+    @if(registerForm.get('mobile')?.touched && registerForm.get('mobile')?.hasError('required')){
+        <small>Mobile phone is required</small>
+    }
+    @else{
+        @if(registerForm.get('mobile')?.hasError('minlength') || registerForm.get('mobile')?.hasError('maxlength')){
+            <small>8 digits required !</small>
+        }
+    }
+    </div>
+
+         <!--password--> 
+    <div class="form-group">
+   
+    <input type="text" placeholder="Password" formControlName="password" required>
+    @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')){
+        <small>Please enter a valid password!</small>
+    }@else{
+        @if(registerForm.get('password')?.hasError('minlength')){
+            <small>At least 6 characters</small>
+        }
+    }
+    </div>
+
+        <div class="form-group">
+   
+    <input type="text" placeholder="Confirm Password" formControlName="passwordConfirm" required>
+    @if( registerForm.get('passwordConfirm')?.touched && registerForm.hasError('passwordMismatch') ){
+        <small>Passwords should match !</small>}
+    </div>
+
+    <button [class.btn-enable]="registerForm.valid"[class.btn-disable]="registerForm.invalid||isSubmitting" type="submit" [disabled]="registerForm.invalid||isSubmitting" >{{isSubmitting? 'Processing...': 'Register'}}</button>
+
+    <p class="footer-text">
+        Already have an account?
+        <a routerLink="/login" >Login here</a>
+    </p>
+    <app-error-message [show]="showError"  [message]="errorMsg"></app-error-message>
+</form>
+    </div>
+</div>
+
+
+
+

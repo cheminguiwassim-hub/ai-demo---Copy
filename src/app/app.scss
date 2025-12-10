@@ -1,0 +1,8 @@
+.app-container{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    app-message-panal{
+        flex: 1;
+    }
+}
