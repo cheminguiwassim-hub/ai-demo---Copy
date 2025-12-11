@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Navbar } from '../../shared/navbar/navbar';   // <— your navbar component
 
@@ -8,6 +8,7 @@ import { Navbar } from '../../shared/navbar/navbar';   // <— your navbar compo
   imports: [RouterModule,Navbar],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class Home {
 
