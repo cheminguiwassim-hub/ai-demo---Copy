@@ -31,103 +31,107 @@
       <form [formGroup]="rideForm" (ngSubmit)="onSubmit()" class="ride-form">
         
         <!-- Step 1: Route -->
-        <div class="form-step" *ngIf="currentStep === 1">
-          <h3 class="step-title">D'où partez-vous ?</h3>
-          
-          <div class="input-group-animated">
-            <span class="input-icon">📍</span>
-            <input type="text" formControlName="departure" placeholder="Ville de départ" class="modern-input">
-            <label>Départ</label>
-          </div>
+<!-- Step 1: Route -->
+<div class="form-step" *ngIf="currentStep === 1">
+  <h3 class="step-title">D'où partez-vous ?</h3>
 
-          <div class="connector-line">
-            <span class="arrow">⬇</span>
-          </div>
+  <div class="input-group-animated">
+    <span class="input-icon">📍</span>
 
-          <div class="input-group-animated">
-            <span class="input-icon">🏁</span>
-            <input type="text" formControlName="arrival" placeholder="Ville d'arrivée" class="modern-input">
-            <label>Arrivée</label>
-          </div>
+    <select formControlName="origin" class="modern-input">
+      <option value="" disabled selected>Choisir une ville</option>
+      <option *ngFor="let g of governorates" [value]="g">{{ g }}</option>
+    </select>
 
-          <div class="step-actions">
-            <!-- Placeholder for back button spacing -->
-             <div></div> 
-            <button type="button" class="btn-next" (click)="nextStep()">Suivant ➜</button>
-          </div>
-        </div>
+    <label>Départ</label>
+  </div>
+
+  <div class="connector-line">
+    <span class="arrow">⬇</span>
+  </div>
+
+  <div class="input-group-animated">
+    <span class="input-icon">🏁</span>
+
+    <select formControlName="destination" class="modern-input">
+      <option value="" disabled selected>Choisir une ville</option>
+      <option *ngFor="let g of governorates" [value]="g">{{ g }}</option>
+    </select>
+
+    <label>Arrivée</label>
+  </div>
+
+  <div class="step-actions">
+    <div></div>
+    <button type="button" class="btn-next" (click)="nextStep()">Suivant ➜</button>
+  </div>
+</div>
+
 
         <!-- Step 2: Details -->
-        <div class="form-step" *ngIf="currentStep === 2">
-          <h3 class="step-title">Quand partez-vous ?</h3>
-          
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group-animated">
-                <span class="input-icon">📅</span>
-                <input type="date" formControlName="date" class="modern-input">
-                <label>Date</label>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group-animated">
-                <span class="input-icon">⏰</span>
-                <input type="time" formControlName="time" class="modern-input">
-                <label>Heure</label>
-              </div>
-            </div>
-          </div>
+<div class="col-md-6">
+  <label class="counter-label">Nombre de places</label>
 
-          <div class="separator"></div>
-          <h3 class="step-title mt-4">Modalités</h3>
+  <div class="counter">
+    <button type="button" (click)="decrementSeats()">−</button>
 
-          <div class="row">
-            <div class="col-md-6">
-              <label class="counter-label">Passagers</label>
-              <div class="counter-input">
-                <input type="number" formControlName="passengers" min="1" max="8">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label class="counter-label">Prix par place (€)</label>
-              <div class="price-input-wrapper">
-                <input type="number" formControlName="price" class="modern-input price-input" min="0">
-                <span class="currency">€</span>
-              </div>
-            </div>
-          </div>
+    <span>{{ rideForm.get('totalSeats')?.value }}</span>
 
-          <div class="options-grid mt-4">
-            <label class="checkbox-card">
-              <input type="checkbox" formControlName="allowSmoking">
-              <span class="card-content">
-                <span class="card-icon">🚬</span>
-                <span class="card-text">Fumeur accepté</span>
-              </span>
-            </label>
-            
-            <label class="checkbox-card">
-              <input type="checkbox" formControlName="allowPets">
-              <span class="card-content">
-                <span class="card-icon">🐾</span>
-                <span class="card-text">Animaux acceptés</span>
-              </span>
-            </label>
+    <button type="button" (click)="incrementSeats()">+</button>
+  </div>
+</div>
+<div class="options-grid mt-4">
+  <label class="checkbox-card">
+    <input type="checkbox" formControlName="luggageAllowed">
+    <span class="card-content">
+      <span class="card-icon">🎒</span>
+      <span class="card-text">Bagages autorisés</span>
+    </span>
+  </label>
+</div>
+<h3 class="step-title mt-4">Informations du trajet</h3>
 
-            <label class="checkbox-card">
-              <input type="checkbox" formControlName="instantBooking">
-              <span class="card-content">
-                <span class="card-icon">⚡</span>
-                <span class="card-text">Réservation auto</span>
-              </span>
-            </label>
-          </div>
+<div class="row mt-3">
+  <!-- Date -->
+  <div class="col-md-6">
+    <div class="input-group-animated">
+      <span class="input-icon">📅</span>
+      <input type="date" formControlName="date" class="modern-input">
+      <label>Date de départ</label>
+    </div>
+  </div>
 
+  <!-- Heure -->
+  <div class="col-md-6">
+    <div class="input-group-animated">
+      <span class="input-icon">⏰</span>
+      <input type="time" formControlName="time" class="modern-input">
+      <label>Heure</label>
+    </div>
+  </div>
+</div>
+
+<!-- Prix -->
+<div class="input-group-animated mt-3">
+  <span class="input-icon">💶</span>
+  <input type="number" formControlName="price" class="modern-input" placeholder="0" min="0">
+  <label>Prix par place (Dt)</label>
+</div>
+
+<h3 class="step-title mt-4">Description</h3>
+
+<div class="input-group-animated">
+  <textarea formControlName="description" class="modern-textarea"
+    placeholder="Détails supplémentaires (optionnel)">
+  </textarea>
+</div>
           <div class="step-actions">
             <button type="button" class="btn-prev" (click)="prevStep()">⬅ Retour</button>
-            <button type="button" class="btn-next" (click)="nextStep()">Suivant ➜</button>
-          </div>
-        </div>
+    <button type="button" class="btn-next" (click)="nextStep()">Suivant ➜</button>
+  </div>
+
+
+
 
         <!-- Step 3: Confirmation / Preview -->
         <div class="form-step" *ngIf="currentStep === 3">
@@ -135,12 +139,14 @@
           
           <div class="preview-card">
             <div class="preview-route">
-              <div class="city">{{ rideForm.get('departure')?.value || 'Départ' }}</div>
+              <div class="city">{{ rideForm.get('origin')?.value || 'Départ' }}</div>
               <div class="route-visual">
                 <div class="line"></div>
                 <div class="icon">🚗</div>
               </div>
-              <div class="city">{{ rideForm.get('arrival')?.value || 'Arrivée' }}</div>
+              <div class="city">
+{{ rideForm.get('destination')?.value || 'Arrivée' }}
+</div>
             </div>
             
             <div class="preview-details">
@@ -154,15 +160,15 @@
               </div>
               <div class="detail">
                 <span class="icon">💶</span>
-                <span class="price-highlight">{{ rideForm.get('price')?.value }}€</span>
+                <span class="price-highlight">{{ rideForm.get('price')?.value }}dt</span>
               </div>
             </div>
           </div>
 
           <div class="input-group-animated mt-4">
             <span class="input-icon">📝</span>
-            <textarea formControlName="description" placeholder="Informations complémentaires pour les passagers..." class="modern-textarea" rows="3"></textarea>
-            <label>Description (optionnel)</label>
+            <textarea formControlName="description" placeholder="Informations complémentaires pour les passagers..." class="modern-textarea" rows="3">{{ rideForm.get('description')?.value }}</textarea>
+            
           </div>
 
           <div class="step-actions">

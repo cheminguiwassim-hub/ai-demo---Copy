@@ -34,7 +34,7 @@ const RideSchema: Schema = new Schema({
   totalSeats: { type: Number, default: 1 },              // total seats the driver had
   seats: { type: Number, default: 1 },                   // seats available
   luggageAllowed: { type: Boolean, default: true },
-  status: { type: String, enum: ['active','cancelled','completed'], default: 'active' },
+  status: { type: String, enum: ['planified','cancelled','completed','active'], default: 'planified' },
     driverId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
