@@ -24,7 +24,7 @@ import { RideInput } from '../types';
 export interface IRide extends RideInput, Document {}
 
 const RideSchema: Schema = new Schema({
-  driverId: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+  description:{type:String,default:'',trim:true},
   origin: { type: String, required: true, trim: true, lowercase: true, index: true },
   destination: { type: String, required: true, trim: true, lowercase: true, index: true },
   date: { type: String, required: true, trim: true },   // you can convert to ISO Date later
@@ -34,7 +34,12 @@ const RideSchema: Schema = new Schema({
   totalSeats: { type: Number, default: 1 },              // total seats the driver had
   seats: { type: Number, default: 1 },                   // seats available
   luggageAllowed: { type: Boolean, default: true },
-  status: { type: String, enum: ['active','cancelled','completed'], default: 'active' }
+  status: { type: String, enum: ['active','cancelled','completed'], default: 'active' },
+    driverId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  }
 }, { timestamps: true });
 
 // Add text index if you want to support fuzzy searching later

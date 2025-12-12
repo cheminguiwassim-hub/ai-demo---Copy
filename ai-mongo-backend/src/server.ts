@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { connectDB } from './db';
 import aiRouter from './aiRouter';
 import authRoutes from './routes/authRoutes';
+import rideRoutes from './routes/rideRoutes';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 // Routes
 app.use('/ai', aiRouter);
 app.use('/auth', authRoutes);
+app.use('/rides',rideRoutes);
 
 // Connect to DB and start server
 connectDB()
