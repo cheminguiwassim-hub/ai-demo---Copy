@@ -1,3 +1,4 @@
+<app-backnavbar></app-backnavbar>
 <div class="auth-container">
     <div class="auth-box">
         <h2>🌟 log IN 🌟 </h2>
@@ -22,7 +23,7 @@
          <!--password--> 
     <div class="form-group">
    
-    <input type="text" placeholder="Password" formControlName="password" required>
+    <input type="password" placeholder="Password" formControlName="password" required>
     @if(loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')){
         <small>Please enter a valid password!</small>
     }@else{

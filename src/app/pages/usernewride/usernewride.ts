@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BacknavbarComponent } from '../../shared/backnavbar/backnavbar.component';
 
 @Component({
   selector: 'app-new',
   standalone:true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,BacknavbarComponent],
   templateUrl: './usernewride.html',
   styleUrl: './usernewride.scss',
   

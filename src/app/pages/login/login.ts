@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { ErrorMsgComponent } from '../../reusables/error-msg/error-msg.component';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink,ErrorMsgComponent,CommonModule,ReactiveFormsModule],
+  imports: [RouterLink,ErrorMsgComponent,CommonModule,ReactiveFormsModule,BacknavbarComponent],
   templateUrl: './login.html',
   styleUrl: './login.scss',
   standalone:true,
@@ -18,7 +19,7 @@ showError:boolean=false;
 errorMsg:string="";
 isLogging:boolean=false;
 loginForm:FormGroup;
-constructor(private fb:FormBuilder,private loginService: LoginService){
+constructor(private fb:FormBuilder,private loginService: AuthService,private router:Router){
   this.loginForm=this.fb.group({
     email:["",[Validators.required,Validators.email,]],
     password:["",[Validators.required,Validators.minLength(6)]],},
@@ -30,12 +31,13 @@ constructor(private fb:FormBuilder,private loginService: LoginService){
    // if(!this.registerForm.invalid){
    this.isLogging=true;
       console.log(this.loginForm.value);
-      this.loginService.loginUser(this.loginForm.value).subscribe({
+      this.loginService.login(this.loginForm.get("email")?.value,this.loginForm.get('password')?.value).subscribe({
         next:(data: any)=>{
           console.log(data);
           this.showError=false;
           this.errorClass="";
           this.isLogging=false;
+          this.router.navigate(['/pages/userdashboard']);
         },
         error:(err: { error: { message: string; }; status: any; })=>{
           this.isLogging=false;
@@ -66,5 +68,6 @@ constructor(private fb:FormBuilder,private loginService: LoginService){
     //}
   }
 }
+import { BacknavbarComponent } from '../../shared/backnavbar/backnavbar.component';
 
 

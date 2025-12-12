@@ -1,0 +1,17 @@
+<div class="nav-bar">
+  <div class="left">
+    <button class="back-btn" (click)="goBack()">
+      <span class="arrow">← Back</span>
+    </button>
+  </div>
+
+  <span class="title">
+    <ng-content></ng-content>
+  </span>
+
+  <div class="right">
+    <button class="back-btn" routerLink="/pages/chat">
+      <span class="arrow">Use chatbot</span>
+    </button>
+  </div>
+</div>

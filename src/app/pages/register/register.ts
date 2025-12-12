@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ErrorMsgComponent } from '../../reusables/error-msg/error-msg.component';
 import { AbstractControl,ValidationErrors } from '@angular/forms';
-import { RegisterService } from '../../services/register.service';
+import { AuthService } from '../../services/auth.service';
+import { BacknavbarComponent } from '../../shared/backnavbar/backnavbar.component';
 @Component({
   selector: 'app-register',
   standalone:true,
-  imports: [RouterLink,CommonModule,ReactiveFormsModule,ErrorMsgComponent,],
+  imports: [RouterLink,CommonModule,ReactiveFormsModule,ErrorMsgComponent,BacknavbarComponent],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -19,7 +20,7 @@ errorMsg:string="";
 isSubmitting:boolean=false;
 emailExisting:boolean=false;
 registerForm:FormGroup;
-constructor(private fb:FormBuilder,private registerService: RegisterService){
+constructor(private fb:FormBuilder,private registerService: AuthService, private router :Router){
   this.registerForm=this.fb.group({
     name:["",Validators.required],
     email:["",[Validators.required,Validators.email,this.emaiExistsValidator()]],
@@ -67,12 +68,13 @@ passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErro
    // if(!this.registerForm.invalid){
    this.isSubmitting=true;
       console.log(this.registerForm.value);
-      this.registerService.registerUser(this.registerForm.value).subscribe({
+      this.registerService.register(this.registerForm.get('name')?.value,this.registerForm.get('email')?.value,this.registerForm.get('mobile')?.value,this.registerForm.get('password')?.value).subscribe({
         next:(data: any)=>{
           console.log(data);
           this.showError=false;
           this.errorClass="";
           this.isSubmitting=false;
+          this.router.navigate(['pages/userdashboard']);
         },
         error:(err: { error: { message: string; }; status: any; })=>{
           this.isSubmitting=false;

@@ -8,7 +8,6 @@ import { Navbar } from '../../shared/navbar/navbar';   // <— your navbar compo
   imports: [RouterModule,Navbar],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
-  encapsulation: ViewEncapsulation.None 
 })
 export class Home {
 

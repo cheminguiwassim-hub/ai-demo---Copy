@@ -1,3 +1,4 @@
+<app-backnavbar></app-backnavbar>
 <div class="auth-container">
     <div class="auth-box">
         <h2>🌟 Create Account 🌟 </h2>
@@ -40,7 +41,7 @@
          <!--password--> 
     <div class="form-group">
    
-    <input type="text" placeholder="Password" formControlName="password" required>
+    <input type="password" placeholder="Password" formControlName="password" required>
     @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')){
         <small>Please enter a valid password!</small>
     }@else{
@@ -52,7 +53,7 @@
 
         <div class="form-group">
    
-    <input type="text" placeholder="Confirm Password" formControlName="passwordConfirm" required>
+    <input type="password" placeholder="Confirm Password" formControlName="passwordConfirm" required>
     @if( registerForm.get('passwordConfirm')?.touched && registerForm.hasError('passwordMismatch') ){
         <small>Passwords should match !</small>}
     </div>

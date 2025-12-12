@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { BacknavbarComponent } from '../../shared/backnavbar/backnavbar.component';
 
 @Component({
   selector: 'app-userprofile',
-  imports: [],
+  imports: [BacknavbarComponent],
   templateUrl: './userprofile.html',
   styleUrl: './userprofile.scss',
   standalone:true,
