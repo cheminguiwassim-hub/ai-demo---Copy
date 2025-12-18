@@ -43,8 +43,7 @@ export const login = async (req: Request, res: Response) => {
         if (!isMatch) {
             return res.status(400).json({ status: "error", message: "Invalid credentials" });
         }
-
-        res.json({ status: "success", message: "Login successful", user: { name: user.name, email: user.email } });
+        res.json({ status: "success", message: "Login successful", user: { name: user.name, email: user.email,id: user._id, } });
 
     } catch (error) {
         console.error("Login Error:", error);
