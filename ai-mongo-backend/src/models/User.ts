@@ -14,6 +14,7 @@ const UserSchema: Schema<IUser> = new Schema({
   password: { type: String, required: true },
   mobile: { type: String, required: true },
   role: { type: String, default: 'user' },
-});
+},{ timestamps: true });
 
 export const User = mongoose.model<IUser>('User', UserSchema);
+export default User;

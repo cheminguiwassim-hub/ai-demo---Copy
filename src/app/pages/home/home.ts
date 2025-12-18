@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Navbar } from '../../shared/navbar/navbar';   // <— your navbar component
 
 @Component({
@@ -10,5 +10,8 @@ import { Navbar } from '../../shared/navbar/navbar';   // <— your navbar compo
   styleUrls: ['./home.scss'],
 })
 export class Home {
+  constructor(private router: Router) {}
+  goMap() { this.router.navigate(['/pages/map-page']); }
+  goRides() { this.router.navigate(['/pages/rides']); }
 
 }

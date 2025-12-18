@@ -1,0 +1,150 @@
+/*.about-hero {
+  background: linear-gradient(135deg, #71966e, #3b82f6);
+  color: #ffffff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.about-container {
+  max-width: 1100px;
+  margin: -2.5rem auto 0;
+  padding: 1.5rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.6rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+}
+
+.card h2,
+.card h3 {
+  color: #111827; // same as auth titles
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.card p {
+  color: #6b7280; // same as subtitles
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+  border-left: 5px solid #6366f1;
+}*/
+/* About Page — Premium Glass Design (Aligned with Rides) */
+
+.about-hero {
+  //background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.35);
+}
+
+.about-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff, #e0e7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Container */
+.about-container {
+  max-width: 1100px;
+  margin: -2.5rem auto 0;
+  padding: 1.5rem;
+}
+
+/* Cards — Glassmorphism */
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 1.5rem;
+  padding: 1.6rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 18px 40px rgba(99, 102, 241, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+}
+
+/* Titles */
+.card h2,
+.card h3 {
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+/* Text */
+.card p {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+/* Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+}
+
+/* Highlight Card */
+.highlight {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.25),
+    rgba(59, 130, 246, 0.25)
+  );
+  border-left: 5px solid #6366f1;
+  box-shadow:
+    0 12px 30px rgba(99, 102, 241, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+}

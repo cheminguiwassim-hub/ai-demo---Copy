@@ -1,4 +1,4 @@
-.home-container {
+/*.home-container {
   width: 100%;
   height: 645px;
   //min-height: calc(100vh - 70px);
@@ -28,7 +28,7 @@
   margin-bottom: 40px;
 }
 
-.primary-btn {
+/*.primary-btn {
   padding: 14px 28px;
   font-size: 1.2rem;
   border: none;
@@ -42,7 +42,64 @@
 
 .primary-btn:hover {
   background: #004bc4;
+}*/
+/* Floating AI Chat Button - Home Page */
+/* Floating AI FAB - Home Page */
+/*.ai-btn {
+  position: fixed;
+  bottom: 40px; // slightly higher for visibility
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1.9rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+
+  background: linear-gradient(135deg, #facc15, #f97316); // bright yellow-orange for max contrast
+  box-shadow:
+    0 10px 25px rgba(250, 204, 21, 0.45),
+    0 0 0 0 rgba(249, 115, 22, 0.6);
+
+  animation: ai-pulse 2s infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1000;
 }
+
+.ai-btn:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 14px 32px rgba(250, 204, 21, 0.6),
+    0 0 20px rgba(249, 115, 22, 0.8);
+}
+
+.ai-btn:active {
+  transform: scale(0.95);
+}*/
+
+/* Pulsing animation */
+/*@keyframes ai-pulse {
+  0% {
+    box-shadow: 0 10px 25px rgba(250, 204, 21, 0.45), 0 0 0 0 rgba(249, 115, 22, 0.5);
+  }
+  70% {
+    box-shadow: 0 10px 25px rgba(250, 204, 21, 0.45), 0 0 0 16px rgba(249, 115, 22, 0);
+  }
+  100% {
+    box-shadow: 0 10px 25px rgba(250, 204, 21, 0.45), 0 0 0 0 rgba(249, 115, 22, 0);
+  }
+}
+
+
+
+
+
+
 
 .feature-buttons {
   display: flex;
@@ -63,4 +120,179 @@
 
 .feature-btn:hover {
   background: #d9e8ff;
+}
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/* Home Container */
+.home-container {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  max-width: 700px;
+  padding: 3rem 2.5rem;
+  border-radius: 32px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+
+  animation: fadeIn 0.6s ease;
+}
+
+/* Title */
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+
+  background: linear-gradient(135deg, #ffffff, #e0e7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* Feature Buttons */
+.feature-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.feature-btn {
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.feature-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.25);
+}
+
+/* Floating AI Chat Button */
+.ai-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #facc15, #f97316);
+
+  box-shadow:
+    0 12px 30px rgba(250, 204, 21, 0.45),
+    0 0 0 0 rgba(249, 115, 22, 0.6);
+
+  animation: ai-pulse 2.2s infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  z-index: 9999; /* 🔥 critical */
+}
+
+
+.ai-btn:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 16px 36px rgba(250, 204, 21, 0.65),
+    0 0 22px rgba(249, 115, 22, 0.85);
+}
+
+.ai-btn:active {
+  transform: scale(0.95);
+}
+
+/* AI Pulse */
+@keyframes ai-pulse {
+  0% {
+    box-shadow:
+      0 12px 30px rgba(250, 204, 21, 0.45),
+      0 0 0 0 rgba(249, 115, 22, 0.5);
+  }
+  70% {
+    box-shadow:
+      0 12px 30px rgba(250, 204, 21, 0.45),
+      0 0 0 18px rgba(249, 115, 22, 0);
+  }
+  100% {
+    box-shadow:
+      0 12px 30px rgba(250, 204, 21, 0.45),
+      0 0 0 0 rgba(249, 115, 22, 0);
+  }
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.4rem;
+  }
+
+  .hero {
+    padding: 2.2rem 1.5rem;
+  }
 }

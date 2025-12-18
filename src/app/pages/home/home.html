@@ -14,18 +14,23 @@
 <div class="home-container">
 
   <div class="hero">
-    <h1 class="title">Welcome to RideConnect</h1>
+    <h1 class="title">Welcome to RideNest</h1>
     <p class="subtitle">Find rides, chat with AI, explore routes & discover drivers easily.</p>
 
-    <button [routerLink]="['/pages/chat']" class="primary-btn">
+    <!--<button [routerLink]="['/pages/chat']" class="primary-btn">
       Start Chatting
-    </button>
+    </button>-->
+     <!-- AI Chat Button --><!-- Floating AI FAB -->
 
+    
     <div class="feature-buttons">
-      <button [routerLink]="['/pages/map']" class="feature-btn">Open Map</button>
-      <button [routerLink]="['/pages/rides']" class="feature-btn">View Rides</button>
-      <button [routerLink]="['/pages/profile']" class="feature-btn">Your Profile</button>
+      <button [routerLink]="['/pages/map-page']" class="feature-btn">View Map 🗺️</button>
+      <button [routerLink]="['/pages/userrides']" class="feature-btn">View Rides 🚗</button>
+      <button [routerLink]="['/pages/about']" class="feature-btn">About Us ℹ️</button>
     </div>
   </div>
+  <button [routerLink]="['/pages/chat']" class="ai-btn">
+      🤖
+    </button>
 </div>
 

@@ -6,3 +6,50 @@
         flex: 1;
     }
 }
+
+
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+ // background: linear-gradient(135deg, #6C63FF, #3B82F6);
+  color: white;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  height: 70px; /* plus grand */
+}
+
+/* Bouton back */
+.back-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.arrow {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Titre */
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-right: 40px; /* pour compenser le bouton */
+}

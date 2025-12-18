@@ -1,6 +1,10 @@
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet,RouterLink } from '@angular/router';
 import { Component, ViewChild } from '@angular/core';
+
+import {Location} from '@angular/common';
+
+
 
 import { Header } from '../../header/header';
 import { MessagePanal } from '../../message-panal/message-panal';
@@ -12,21 +16,23 @@ import { Message } from '../../utility/constants';
 import { v4 as uuidv4 } from "uuid";
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [RouterModule,FormsModule, RouterOutlet, Header, MessagePanal, UserInput, Map],
+  imports: [RouterModule,FormsModule, RouterOutlet, Header, MessagePanal, UserInput, Map,RouterLink],
   templateUrl: './chat.html',
   styleUrls: ['./chat.scss'],
 })
 export class Chat {
+  
 
   @ViewChild(Map) map!: Map;
   data: Message[] = [];
 
-  constructor(private ai: AiService) {}
-
+  constructor(private ai: AiService,private location:Location) {}
+  goBack(){
+    this.location.back();
+  }
 
   async getMessage(userInput: string) {
 
@@ -135,4 +141,17 @@ export class Chat {
       }
     }
   }
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+

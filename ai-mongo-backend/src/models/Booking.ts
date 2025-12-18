@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IBooking extends Document {
-  userId: string | null;
-  rideId: string;
+  userId: mongoose.Types.ObjectId;
+  rideId: mongoose.Types.ObjectId;
   seats: number;
   status: string; // booked | cancelled
 }

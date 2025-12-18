@@ -16,19 +16,26 @@ import { Userstats } from './pages/userstats/userstats';
 import { UserDashboard } from './pages/user-dashboard/user-dashboard';
 import { Usernewride } from './pages/usernewride/usernewride';
 import { AuthGuard } from './auth.guard';
+import { Map } from './map/map';
+import { MapPage } from './pages/map-page/map-page';
+import { About } from './pages/about/about/about';
+
 
 export const routes: Routes = [
   { path: '', component: Home },      // default page
   { path: 'pages/chat', component: Chat },  // your chat bubble page          // fallback
   {path:'pages/login', component:Login},
-   { path:'pages/register' , component:Register},
-   {path:'pages/userprofile', component:Userprofile},
-  {path:'pages/userrides',component:Userrides,canActivate: [AuthGuard]}, 
-{path:'pages/userstats',component:Userstats,canActivate: [AuthGuard]},
-{path:'pages/userdashboard',component:UserDashboard},
-{path:'pages/usernewride',component:Usernewride,canActivate: [AuthGuard]}
+  { path:'pages/register' , component:Register},
+  {path:'pages/userprofile', component:Userprofile},
+  {path:'pages/userrides',component:Userrides/*,canActivate: [AuthGuard]*/}, 
+  {path:'pages/userstats',component:Userstats/*,canActivate: [AuthGuard]*/},
+  {path:'pages/userdashboard',component:UserDashboard},
+  {path:'pages/usernewride',component:Usernewride/*,canActivate: [AuthGuard]*/},
+  //{ path: 'pages/map', component: Map }
+  { path: 'pages/map-page', component: MapPage },
+  { path: 'pages/about', component: About },
 
-    ,{ path: '**', redirectTo: '' } 
+  { path: '**', redirectTo: '' } 
   
 /*,
 {

@@ -20,7 +20,15 @@
 
   </google-map>
 </div>-->
-<div id="map"></div>
+
+
+
+
+
+
+
+
+<!--<div id="map"></div>
 <div class="map-controls">
   <input type="text" placeholder="Origin..." #originInput>
   <button (click)="setOrigin(originInput.value)">Set Origin</button>
@@ -30,3 +38,49 @@
 </div>
 
 <div id="map"></div>
+-->
+
+
+
+
+
+
+<!--
+
+<div class="map-container">
+  <div id="map"></div>
+
+  <div class="map-controls">
+    <input type="text" placeholder="Origin..." #originInput>
+    <button (click)="setOrigin(originInput.value)">Set Origin</button>
+
+    <input type="text" placeholder="Destination..." #destInput>
+    <button (click)="setDestination(destInput.value)">Set Destination</button>
+  </div>
+</div>
+-->
+
+<div class="map-wrapper">
+
+
+<div id="map"></div>
+
+
+<div class="controls">
+<h3>Route planner</h3>
+
+
+<input #origin placeholder="Origin city" />
+<button (click)="setOrigin(origin.value)">Set origin</button>
+
+
+<input #dest placeholder="Destination city" />
+<button (click)="setDestination(dest.value)">Set destination</button>
+
+
+<button class="clear" (click)="clearRoute()">Clear</button>
+
+
+<div *ngIf="loading" class="loading">Searching...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+</div>
