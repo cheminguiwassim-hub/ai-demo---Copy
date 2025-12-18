@@ -219,8 +219,16 @@ export default router;
 
 import express from 'express';
 import { extractIntent, generateUserReply } from './logic';
-import { createRide, findRides, findRideById } from './mongoActions';
+import { createRide, findRides, findRideById, updateRide, createBooking } from './mongoActions';
 import { ConversationMessage, RideInput } from './types';
+
+
+
+// define a local type with optional user
+interface AuthRequest extends Express.Request {
+  user?: { id: string };
+}
+
 
 const router = express.Router();
 
@@ -284,10 +292,24 @@ router.post('/message', async (req, res) => {
         break;
 
       case 'get_ride':
-        if (aiResult.rideId) dbResult = await findRideById(aiResult.rideId);
-        break;
+        if (!aiResult.rideId) {
+          aiReply = "Which ride do you want to see?";
+          return res.json({ aiResult, dbResult: null, aiReply });
+        }
+        dbResult = await findRideById(aiResult.rideId);
 
-      /*case "book_ride":
+        if (!dbResult) {
+          aiReply = "That ride doesn’t seem to exist.";
+          return res.json({ aiResult, dbResult: null, aiReply });
+        }          
+      break;
+
+      case "book_ride":
+          const authReq = req as AuthRequest; // cast Request to AuthRequest
+        if (!authReq.user) {
+          aiReply = "To book a ride, please log in first.";
+          return res.json({ aiResult, dbResult: null, aiReply });
+        }
         if (!aiResult.rideId) {
           aiReply = "Which ride do you want to book?";
           return res.json({ aiResult, dbResult: null, aiReply });
@@ -297,19 +319,19 @@ router.post('/message', async (req, res) => {
           aiReply = "I couldn’t find this ride anymore.";
           return res.json({ aiResult, dbResult: null, aiReply });
         }
-        const seatsRequested = aiResult.seats ?? 1;
-        if (ride.seats< seatsRequested) {
-          aiReply = `Only ${ride.seats} seats left! You requested ${seatsRequested}.`;
+        const seatsAvailable = Number(ride.seats ?? 0);
+        const seatsRequested = Number(aiResult.seats ?? 1);
+        if (seatsAvailable < seatsRequested) {
+          aiReply = `Only ${seatsAvailable} seats left! You requested ${seatsRequested}.`;
           return res.json({ aiResult, dbResult: null, aiReply });
         }
 
         // reduce available seats
-        await updateRide(aiResult.rideId, { seats: ride.seats - seatsRequested });
+        await updateRide(aiResult.rideId, { seats: seatsAvailable - seatsRequested });
         // create booking
         dbResult = await createBooking(null, aiResult.rideId, seatsRequested);
         aiReply = `Your booking is confirmed! ${seatsRequested} seat(s) reserved.`;
         break;
-      */
       default:
         dbResult = { message: 'Unknown intent' };
         break;

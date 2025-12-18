@@ -15,6 +15,7 @@ import { Userrides } from './pages/userrides/userrides';
 import { Userstats } from './pages/userstats/userstats';
 import { UserDashboard } from './pages/user-dashboard/user-dashboard';
 import { Usernewride } from './pages/usernewride/usernewride';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', component: Home },      // default page
@@ -22,10 +23,10 @@ export const routes: Routes = [
   {path:'pages/login', component:Login},
    { path:'pages/register' , component:Register},
    {path:'pages/userprofile', component:Userprofile},
-  {path:'pages/userrides',component:Userrides}, 
-{path:'pages/userstats',component:Userstats},
+  {path:'pages/userrides',component:Userrides,canActivate: [AuthGuard]}, 
+{path:'pages/userstats',component:Userstats,canActivate: [AuthGuard]},
 {path:'pages/userdashboard',component:UserDashboard},
-{path:'pages/usernewride',component:Usernewride}
+{path:'pages/usernewride',component:Usernewride,canActivate: [AuthGuard]}
 
     ,{ path: '**', redirectTo: '' } 
   

@@ -12,4 +12,9 @@
     <button routerLink="/pages/login" class="login-btn">Login</button>
     <button routerLink="/pages/register" class="register-btn">Register</button>
   </div>
+  <div class="auth-buttons" *ngIf="isLoggedIn">
+    <button routerLink="/pages/userdashboard" class="login-btn">Dashboard</button>
+    <button (click)="logout()" class="register-btn">Logout</button>
+  </div>
 </nav>
+

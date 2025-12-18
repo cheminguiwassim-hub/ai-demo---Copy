@@ -9,7 +9,7 @@ export interface IBooking extends Document {
 
 const BookingSchema: Schema = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: "User", default: null },
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     rideId: { type: Schema.Types.ObjectId, ref: "Ride", required: true },
     seats: { type: Number, default: 1 },
     status: { type: String, enum: ["booked", "cancelled"], default: "booked" }
