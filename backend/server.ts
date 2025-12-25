@@ -103,7 +103,7 @@ app.use(cors());
 app.use(express.json());
 
 // Use your API key
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "AIzaSyC2opZMlDTnfrsY6asNDbKFEdzGIcf3quQ");
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
 
 app.post('/ask', async (req, res) => {
   try {

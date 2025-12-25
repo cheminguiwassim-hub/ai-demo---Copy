@@ -253,6 +253,12 @@ router.post('/message', async (req, res) => {
 
     switch (aiResult.intent) {
       case 'create_ride':
+        const authReq = req as AuthRequest;
+
+      if (!authReq.user) {
+        aiReply = "To create a ride, please log in first.";
+      return res.json({ aiResult, dbResult: null, aiReply });
+      }
         const missingFields: string[] = [];
         if (!aiResult.origin) missingFields.push("origin");
         if (!aiResult.destination) missingFields.push("destination");
@@ -262,9 +268,9 @@ router.post('/message', async (req, res) => {
           aiReply = `Before I can create this ride, I need the following info: ${missingFields.join(", ")}. Can you provide it?`;
           return res.json({ aiResult, dbResult: null, aiReply });
         }
-
+/*
         const createData: RideInput = {
-          driverId: aiResult.driverId || null,
+          driverId: authReq.user.id,
           origin: aiResult.origin,
           destination: aiResult.destination,
           date: aiResult.date,
@@ -277,7 +283,22 @@ router.post('/message', async (req, res) => {
           status: 'active'
         };
 
-        dbResult = await createRide(createData);
+        dbResult = await createRide(createData);*/
+        // 🚫 NO DB WRITE HERE
+        dbResult = {
+          driverId: authReq.user.id,
+          origin: aiResult.origin!,
+          destination: aiResult.destination!,
+          date: aiResult.date!,
+          time: aiResult.time || '',
+          price: Number(aiResult.price ?? 0),
+          seats: Number(aiResult.seats),
+          maxPassengers: Number(aiResult.seats),
+          allowSmoking: Boolean(aiResult.allowSmoking),
+          allowPets: Boolean(aiResult.allowPets),
+          instantBooking: Boolean(aiResult.instantBooking),
+          status: 'active'
+        };
         break;
 
       case 'search_rides':
@@ -304,7 +325,7 @@ router.post('/message', async (req, res) => {
         }          
       break;
 
-      case "book_ride":
+      /*case "book_ride":
           const authReq = req as AuthRequest; // cast Request to AuthRequest
         if (!authReq.user) {
           aiReply = "To book a ride, please log in first.";
@@ -331,7 +352,70 @@ router.post('/message', async (req, res) => {
         // create booking
         dbResult = await createBooking(null, aiResult.rideId, seatsRequested);
         aiReply = `Your booking is confirmed! ${seatsRequested} seat(s) reserved.`;
-        break;
+        break;*/
+      // aiRouter.ts
+      /*case 'book_ride':
+        dbResult = {
+        rideId: aiResult.rideId
+      };
+      break;*/
+      case 'book_ride': {
+  // 🔐 1. Check login (JWT middleware must set req.user)
+  const authReq = req as AuthRequest;
+
+  if (!authReq.user) {
+    aiReply = "To book a ride, please log in first.";
+    return res.json({ aiResult, dbResult: null, aiReply });
+  }
+
+  if (!aiResult.rideId) {
+    aiReply = "Which ride do you want to book?";
+    return res.json({ aiResult, dbResult: null, aiReply });
+  }
+
+  // 🚗 2. Load ride
+  const ride = await findRideById(aiResult.rideId);
+  if (!ride) {
+    aiReply = "I couldn’t find this ride anymore.";
+    return res.json({ aiResult, dbResult: null, aiReply });
+  }
+
+  // 💺 3. Check seats
+  const seatsRequested = Number(aiResult.seats || 1);
+  const seatsAvailable = Number(ride.seats || 0);
+
+  if (seatsAvailable < seatsRequested) {
+    aiReply = `Only ${seatsAvailable} seat(s) left.`;
+    return res.json({ aiResult, dbResult: null, aiReply });
+  }
+/*
+  // 🔄 4. Update ride seats
+  await updateRide(aiResult.rideId, {
+    seats: seatsAvailable - seatsRequested
+  });
+
+  // 🧾 5. Create booking (THIS was missing)
+  const booking = await createBooking(
+    authReq.user.id,
+    aiResult.rideId,
+    seatsRequested
+  );
+
+  dbResult = {
+    bookingId: booking._id,
+    rideId: aiResult.rideId,
+    seats: seatsRequested
+  };*/
+   // ✅ ONLY PREPARE DATA — NO DB WRITE
+  dbResult = {
+    rideId: aiResult.rideId,
+    seatsRequested
+  };
+
+  aiReply = `Great news! ${seatsRequested} seat(s) are available.`;
+  break;
+}
+
       default:
         dbResult = { message: 'Unknown intent' };
         break;
@@ -349,7 +433,11 @@ router.post('/message', async (req, res) => {
     }
 
     // 4. Generate human-readable AI reply
-    aiReply = await generateUserReply(dbResult, updatedConversation);
+    //aiReply = await generateUserReply(dbResult, updatedConversation);
+    // 4. Generate human-readable AI reply ONLY if not already set
+if (!aiReply) {
+  aiReply = await generateUserReply(dbResult, updatedConversation);
+}
 
     // 5. Return structured AI intent, DB result, and readable reply
     res.json({ aiResult, dbResult, aiReply });

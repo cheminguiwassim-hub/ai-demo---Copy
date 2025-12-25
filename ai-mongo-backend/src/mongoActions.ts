@@ -181,7 +181,10 @@ function parseSeats(input?: number | string): number {
 
 // Create ride — normalizes values before saving
 export const createRide = async (rideData: RideInput): Promise<IRide> => {
-  const data = {
+  if (!rideData.driverId) {
+    throw new Error('driverId is required');
+  }
+  /*const data = {
     driverId: rideData.driverId || null,
     origin: norm(rideData.origin),
     destination: norm(rideData.destination),
@@ -193,7 +196,30 @@ export const createRide = async (rideData: RideInput): Promise<IRide> => {
     seats: parseSeats(rideData.seats),
     luggageAllowed: rideData.luggageAllowed ?? true,
     status: 'active'
-  } as Partial<IRide>;
+  } as Partial<IRide>;*/
+   const maxPassengers = parseSeats(rideData.maxPassengers);
+  const seats = parseSeats(rideData.seats);
+
+  const data: Partial<IRide> = {
+    driver: new mongoose.Types.ObjectId(rideData.driverId),
+
+    origin: norm(rideData.origin),
+    destination: norm(rideData.destination),
+    date: rideData.date.trim(),
+    time: rideData.time?.trim() || '',
+
+    price: parsePrice(rideData.price),
+
+    maxPassengers,
+    seats,
+
+    allowSmoking: rideData.allowSmoking ?? false,
+    allowPets: rideData.allowPets ?? false,
+    instantBooking: rideData.instantBooking ?? false,
+
+    status: rideData.status ?? 'planned',
+    passengers: []
+  };
 
   const ride = new Ride(data);
   return ride.save();
@@ -245,9 +271,19 @@ export const updateRide = async (rideId: string, update: Partial<RideInput>) => 
   const _update: any = { ...update };
   if (_update.origin) _update.origin = norm(_update.origin);
   if (_update.destination) _update.destination = norm(_update.destination);
+  if (update.date) _update.date = update.date;
+  if (update.time) _update.time = update.time;
   if (_update.price) _update.price = parsePrice(_update.price);
   if (_update.seats) _update.seats = parseSeats(_update.seats);
-
+  if (update.maxPassengers)
+    _update.maxPassengers = parseSeats(update.maxPassengers);
+  if (typeof update.allowSmoking === 'boolean')
+    _update.allowSmoking = update.allowSmoking;
+  if (typeof update.allowPets === 'boolean')
+    _update.allowPets = update.allowPets;
+  if (typeof update.instantBooking === 'boolean')
+    _update.instantBooking = update.instantBooking;
+  if (update.status) _update.status = update.status;
   return Ride.findByIdAndUpdate(rideId, _update, { new: true }).exec();
 };
 

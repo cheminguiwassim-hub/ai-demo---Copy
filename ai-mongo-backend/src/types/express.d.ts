@@ -52,7 +52,7 @@ declare module "express-serve-static-core" {
 }
 */
 
-import * as express from 'express';
+/*import * as express from 'express';
 
 declare global {
   namespace Express {
@@ -60,6 +60,25 @@ declare global {
       user?: {
         id: string;email?: string 
       } | null;
+    }
+  }
+}
+
+export {};
+*/
+
+
+import { Types } from 'mongoose';
+
+declare global {
+  namespace Express {
+    interface User {
+      id: string;
+      email?: string;
+    }
+
+    interface Request {
+      user?: User;
     }
   }
 }

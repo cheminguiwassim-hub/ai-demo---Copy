@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { User } from '../models/User';
 import bcrypt from 'bcrypt';
-
+import jwt from 'jsonwebtoken';
+const JWT_SECRET = process.env.JWT_SECRET || 'change_this_secret';
 // Register
 export const register = async (req: Request, res: Response) => {
     try {
@@ -43,7 +44,24 @@ export const login = async (req: Request, res: Response) => {
         if (!isMatch) {
             return res.status(400).json({ status: "error", message: "Invalid credentials" });
         }
-        res.json({ status: "success", message: "Login successful", user: { name: user.name, email: user.email,id: user._id, } });
+        //res.json({ status: "success", message: "Login successful", user: { name: user.name, email: user.email,id: user._id, } });
+//const JWT_SECRET = process.env.JWT_SECRET || 'change_this_secret';
+const token = jwt.sign(
+  { id: user._id, email: user.email },
+  JWT_SECRET,
+  { expiresIn: '1d' }
+);
+
+res.json({
+  status: "success",
+  message: "Login successful",
+  token,                     // ✅ BACKEND sends token
+  user: {
+    id: user._id,
+    name: user.name,
+    email: user.email
+  }
+});
 
     } catch (error) {
         console.error("Login Error:", error);

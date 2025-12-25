@@ -19,8 +19,10 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
   if (!token) return res.status(401).json({ message: 'No token provided' });
 
   try {
+    //console.log("JWT_SECRET:", process.env.JWT_SECRET);
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
-    req.user = { id: decoded.id, email: decoded.email }; // attach user to request
+    //console.log("JWT_SECRET:", process.env.JWT_SECRET);
+    /*req*/(req as any).user = { id: decoded.id, email: decoded.email }; // attach user to request
     next();
   } catch (err) {
     res.status(401).json({ message: 'Invalid token' });

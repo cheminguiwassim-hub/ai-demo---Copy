@@ -565,13 +565,36 @@ export class Map implements AfterViewInit, OnDestroy {
     }).setView([36.8065, 10.1815], 7);
 
     L.control.zoom({ position: 'bottomright' }).addTo(this.map);
-
+/*
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
 
     this.markerCluster = L.markerClusterGroup();
     this.map.addLayer(this.markerCluster);
+*/
+    const street = L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  { attribution: '© OpenStreetMap contributors' }
+);
+
+const hot = L.tileLayer(
+  'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+  { attribution: '© OpenStreetMap contributors' }
+);
+
+// Default layer
+street.addTo(this.map);
+
+// 🔹 THIS triggers layers.png
+L.control.layers(
+  {
+    Street: street,
+    Humanitarian: hot
+  }
+).addTo(this.map);
+  this.markerCluster = L.markerClusterGroup();
+  this.map.addLayer(this.markerCluster);
   }
 
   // -----------------------

@@ -60,17 +60,22 @@ export interface ConversationMessage {
 
 export interface RideInput {
   driverId?: string | null;
-  origin?: string;
-  destination?: string;
-  date?: string;
+  origin: string;
+  destination: string;
+  date: string;
   time?: string;
   price?: number | string;
-  pricePreference?: string;
-  totalSeats?: number | string;
+  maxPassengers: number;
+  //pricePreference?: string;
+  //totalSeats?: number | string;
   seats?: number | string;
-  luggageAllowed?: boolean;
-  status?: string;
-  rideId?: string;
+  //luggageAllowed?: boolean;
+  //status?: string;
+  //rideId?: string;
+  allowSmoking?: boolean;
+  allowPets?: boolean;
+  instantBooking?: boolean;
+  status?: 'active' | 'planned' | 'completed' | 'cancelled';
 }
 
 export interface AIExtractionResult {
@@ -82,12 +87,15 @@ export interface AIExtractionResult {
   pricePreference?: string;
   price?: number | string;
   seats?: number;
-  totalSeats?: number;
-  driverId?: string | null;   // <-- ADD THIS
+  //totalSeats?: number;
+  //driverId?: string | null;   // <-- ADD THIS
   rideId?: string;
   rideIndex?: number;
   matchAllCriteria?: boolean;
   wantsListOnly?: boolean;
+  allowSmoking?: boolean;
+  allowPets?: boolean;
+  instantBooking?: boolean;
   field?: string;
   newValue?: string;
   message?: string;

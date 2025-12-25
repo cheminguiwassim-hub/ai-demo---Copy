@@ -30,9 +30,9 @@ export interface IRide extends RideInput, Document {
   maxPassengers:number,
   passengers: Types.ObjectId[],
   seats: number,                   // seats available
-  allowSmoking: Boolean,
-  allowPets: Boolean,
-  instantBooking: Boolean,
+  allowSmoking: boolean,
+  allowPets: boolean,
+  instantBooking: boolean,
   driver: mongoose.Types.ObjectId,
   status?: 'active' | 'planned' | 'completed' | 'cancelled';
 

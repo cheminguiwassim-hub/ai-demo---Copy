@@ -37,7 +37,10 @@ constructor(private fb:FormBuilder,private loginService: AuthService,private rou
           this.showError=false;
           this.errorClass="";
           this.isLogging=false;
+          //this.loginService.setUser(data.user);
+          localStorage.setItem('token', data.token);   // 🔥 REQUIRED
           this.loginService.setUser(data.user);
+
           this.router.navigate(['/pages/userdashboard']);
         },
         error:(err: { error: { message: string; }; status: any; })=>{

@@ -20,4 +20,12 @@
     } @empty{
         <div class="no-message-container">NO Messages</div>
     }
-    </section>
+    <div *ngIf="pendingBooking" class="confirm-card"> 
+        <button (click)="confirmBooking()">Confirm booking</button> 
+        <button (click)="cancelBooking()">Cancel</button> 
+    </div> 
+    <div *ngIf="pendingRideCreation" class="confirm-card">
+        <button (click)="confirmBooking()">Create ride</button>
+        <button (click)="cancelBooking()">Cancel</button>
+    </div>
+</section>

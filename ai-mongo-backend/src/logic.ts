@@ -55,7 +55,11 @@ Use this exact JSON schema:
   "date": "",
   "time": "",
   "pricePreference": "",
+  "price": 0,
   "seats": 0,
+  "allowSmoking": false,
+  "allowPets": false,
+  "instantBooking": false,
   "newValue": "",
   "rideId": "",
   "field": "",
@@ -107,11 +111,16 @@ ${JSON.stringify(backendResult, null, 2)}
 
 // Send prompt to AI
 export async function sendToAI(prompt: string) {
-  const res = await axios.post(
+  /*const res = await axios.post(
     AI_ENDPOINT,
     { prompt },
     { headers: { 'Authorization': `Bearer ${API_KEY}` } }
-  );
+  );*/
+  const headers: any = {};
+  if (API_KEY) headers['Authorization'] = `Bearer ${API_KEY}`;
+  
+  const res = await axios.post(AI_ENDPOINT, { prompt }, { headers });
+  
   return res.data.answer;
 }
 

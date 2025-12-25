@@ -18,6 +18,6 @@ router.get('/:id', getRide);           // public get
 router.post('/', authMiddleware, createRide);      // create ride (driver)
 router.put('/:id', authMiddleware, updateRide);    // edit ride (driver)
 router.delete('/:id', authMiddleware, deleteRide); // delete ride (driver)
-router.post('/:id/book', authMiddleware, bookRide);// booking (user)
+router.post('/:rideId/book', authMiddleware, bookRide);// booking (user)
 
 export default router;

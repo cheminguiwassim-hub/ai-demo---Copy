@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 export const createRide = async (req: Request, res: Response) => {
   try {
     //const { origin, destination, date, time, seats, price, description } = req.body;
-    const driverId = req.user?.id;
+    const driverId = /*req.user?.id;*/(req as any).user.id;
     if (!driverId) return res.status(401).json({ message: 'Unauthorized' });
     const {
       origin,
@@ -28,7 +28,20 @@ export const createRide = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Missing fields' });
     }
 
-    const ride = await Ride.create({});
+    const ride = await Ride.create({
+      driver: driverId,  // REQUIRED
+      origin,
+      destination,
+      date,
+      time: time || '',
+      price: price || 0,
+      seats,
+      maxPassengers: maxPassengers || seats,
+      allowSmoking: allowSmoking || false,
+      allowPets: allowPets || false,
+      instantBooking: instantBooking || false,
+      passengers: []
+    });
 
     return res.status(201).json(ride);
   } catch (err) {
@@ -71,7 +84,7 @@ export const updateRide = async (req: Request, res: Response) => {
     if (!ride) return res.status(404).json({ message: 'Ride not found' });
 
     // only driver can edit
-    if (String(ride.driverId) !== String(req.user?.id)) {
+    if (String(ride.driverId) !== String(/*req.user?.id*/(req as any).user.id)) {
       return res.status(403).json({ message: 'Forbidden' });
     }
 
@@ -89,7 +102,7 @@ export const deleteRide = async (req: Request, res: Response) => {
     const ride = await Ride.findById(req.params.id);
     if (!ride) return res.status(404).json({ message: 'Ride not found' });
 
-    if (String(ride.driverId) !== String(req.user?.id)) {
+    if (String(ride.driverId) !== String(/*req.user?.id*/(req as any).user.id)) {
       return res.status(403).json({ message: 'Forbidden' });
     }
 
@@ -103,32 +116,44 @@ export const deleteRide = async (req: Request, res: Response) => {
 
 export const bookRide = async (req: Request, res: Response) => {
   try {
-    const ride = await Ride.findById(req.params.id);
+    const ride = await Ride.findById(req.params.rideId);
     if (!ride) return res.status(404).json({ message: 'Ride not found' });
 
-    const userId = req.user?.id;
+    const userId = /*req.user?.id;*/(req as any).user.id;
     if (!userId) return res.status(401).json({ message: 'Login required' });
 
-    if (ride.seats <= 0) {
+    /*if (ride.seats <= 0) {
       return res.status(400).json({ message: 'No seats available' });
-    }
+    }*/
+    const seatsRequested = Number(req.body.seats || 1);
 
+    if (ride.seats < seatsRequested) {
+      return res.status(400).json({ message: 'Not enough seats available' });
+    }
     // avoid duplicate booking
-    if (ride.passengers.find((p:any) => String(p) === String(userId))) {
+    /*if (ride.passengers.find((p:any) => String(p) === String(userId))) {
       return res.status(400).json({ message: 'Already booked' });
-    }
+    }*/
+   const existingBooking = await Booking.findOne({
+  rideId: ride._id,
+  userId
+});
 
+if (existingBooking) {
+  return res.status(400).json({ message: 'Already booked' });
+}
+    ride.seats -= seatsRequested;
     ride.passengers.push(userId as any);
-    ride.seats = ride.seats - 1;
+    //ride.seats = ride.seats - 1;
+    //ride.seats -= seatsRequested;
     await ride.save();
 
     await Booking.create({ 
         /*userId: new mongoose.Types.ObjectId(userId),*/ 
         rideId: ride._id, 
         userId: userId,
-        seats: 1 });
-
-    return res.status(201).json({ message: 'Booking confirmed' });
+        seats: seatsRequested });
+    return res.status(201).json({ message: `Booking confirmed for ${seatsRequested} seat(s)` });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Server error' });
